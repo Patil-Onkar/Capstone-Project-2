@@ -63,6 +63,8 @@ From this dataset, After we train our model, we want predict if player x wins or
 ### Access
 You can directly download the data file from the repo https://archive.ics.uci.edu/ml/datasets/Tic-Tac-Toe+Endgame. Its opensource, we don't require any access/authentication procedure. Alternatively I have downloaded the data and added column names, that you can find it in this repo. 
 
+Steps to access the dataset: This repo contains 'train.csv' file, upload this to azure ML studio. You can also download it from above repo. From there the data is uploaded to azure datastore and converted to tabular form. After registering the dataset onto the datastore, it can be used in profile to train the job. 
+
 ## Automated ML
 Azure AutoML feature automates all the Machine learning steps and suggests the suitable model for deployment. Following is the schematics for the same.
 
@@ -113,7 +115,12 @@ At last  screenshot showing training is completed:
 
 ![image](https://user-images.githubusercontent.com/39105103/113687364-dfb83280-96e5-11eb-94da-1619fd644b93.png)
 
-for more details, we are able to see this in notebook as well.
+for more details, please check the notebook.
+
+Below screenshot shows the RunId of automl model.
+
+![image](https://user-images.githubusercontent.com/39105103/113721087-d55d5f00-970c-11eb-8fc4-cbd27baa3a42.png)
+
 
 3.Following screenshot will help us to check the performance of different model relatively.
 
@@ -167,7 +174,16 @@ It can be seen that, the combination: Learning rate = 1.0, Tree depth  = 3 and n
 
 ![image](https://user-images.githubusercontent.com/39105103/113691624-43445f00-96ea-11eb-88c8-9d40bfc2dca0.png)
 
-The model ID and corresponding hyperparameters ase shown.
+The model ID and corresponding hyperparameters are shown.
+
+
+
+3. The below screenshot shows the code to register the best model.
+
+![image](https://user-images.githubusercontent.com/39105103/113719799-a1356e80-970b-11eb-808e-d8bedc910786.png)
+
+
+
 
 Possible Improvements: I sampled 12 combinations, We can sample more for finer tuning. We can also try deep learning models
 
@@ -211,6 +227,15 @@ I have named the service as bestmodel. we can observe that deployment state is h
 To check the state of endpoint is active or not, I have printed the uri using endpoint service object:
 
 ![image](https://user-images.githubusercontent.com/39105103/113696071-2e1dff00-96ef-11eb-8d06-320b62814f2d.png)
+
+
+
+step 4 How to send a query:
+As model is deployed, we can consume the endpoints. 
+We have created a 'service' object in notebook while deploying the model. We can fetch the service uri from this object. Note that now our model is deployed as web service so it can only be communicated by JSON request. So we created a example query, converted it to json format and then send it to the deployed service. Responce we got from the endpoints is also in json format. Below screenshot shows the code we used to send the request and get the response.
+
+
+![image](https://user-images.githubusercontent.com/39105103/113727917-37b95e00-9713-11eb-9e00-78c5a46e5c32.png)
 
 
 
