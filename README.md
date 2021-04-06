@@ -1,22 +1,45 @@
-*NOTE:* This file is a template that you can use to create the README for your project. The *TODO* comments below will highlight the information you should be sure to include.
+# Capstone project from Azure machine learning Nanodegree program
 
-# Your Project Title Here
+## Introduction
 
-*TODO:* Write a short introduction to your project.
+This is a capstone project from Azure machine learning nanodegree program udacity. In this project we aim to build and train the machine learning models using Hyperdrive and AutoML. Once we train our machine learning model we compare the run and pick the best one for deployment. 
+The second part of this project is to deploy the model as a web service and test the functionality.
+
+For this case I have used Tic-tac-toe game states as the training dataset for my model. After training my ML model, model can be used to predict which player has won the game just by looking at the states of game.
+
+The end goal is to understand different azure machine learning services.
+
+
 
 ## Project Set Up and Installation
-*OPTIONAL:* If your project has any special installation steps, this is where you should put it. To turn this project into a professional portfolio project, you are encouraged to explain how to set up this project in AzureML.
+All the necessary dependancies will be added during runtime of the notebook. We don't need to install anything explicitly. Ofcourse, to run this project you must need python 3.6+ and AzureML SDK.
 
 ## Dataset
 
 ### Overview
-*TODO*: Explain about the data you are using and where you got it from.
+The dataset is about states of tic-tac-toe game. In this dataset player 'x' and player 'o' are playing. Target column predicts if player 'x is winning os losing.
+
+Below screenshot shows how the game looks and winning condition of game.
+
+![image](https://user-images.githubusercontent.com/39105103/113667701-c952ac80-96ce-11eb-97e6-e51825a8f4fa.png)
+
+
+This is the dataset screenshot. 9 columns are for 9 boxes in the game. x= player x, o=player 'o'  and b=blank
+
+![image](https://user-images.githubusercontent.com/39105103/113668333-b4c2e400-96cf-11eb-9b8d-f9023b77231f.png)
+
+
+positive: x win, Negative : x loose
+
+
+The dataset is available at open UCI repo : https://archive.ics.uci.edu/ml/datasets/Tic-Tac-Toe+Endgame 
 
 ### Task
-*TODO*: Explain the task you are going to be solving with this dataset and the features you will be using for it.
+
+From this dataset, After we train our model, we want predict if player x wins or not at any state of game. Though this task can be hard coded with the rules of game, its fascinating to see how ML infers the rules outof it and predict the winning condition. Feature selection is straight forward, we use occupation state of each block. So for 9 blocks we have 9 features to train.
 
 ### Access
-*TODO*: Explain how you are accessing the data in your workspace.
+You can directly download the data file from the repo https://archive.ics.uci.edu/ml/datasets/Tic-Tac-Toe+Endgame. Its opensource, we don't require any access/authentication procedure. Alternatively I have downloaded the data and added column names, that you can find it in this repo. 
 
 ## Automated ML
 *TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
