@@ -87,23 +87,89 @@ K-fold validation is 4, for 25% validation set
 
 
 ### Results
-*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
+AutoML tested 44 different algorithm, out of which xgboost classifier,voting ensemble and stack ensemble gave highest accuracy of 99.90 %. As I speculated before, all the features are of categorical types, tree based algorithms are outperforming others. 
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+As the accuracy we got is nearly 100%. I assume there is less scope of improvement. And that too can be achieved by incresing the training dataset.
+
+The following screenshots explain the result breifly.
+
+1. Screenshot of logs generated during the training:
+
+![image](https://user-images.githubusercontent.com/39105103/113686539-fd38cc80-96e4-11eb-8168-8ede76d6c372.png)
+
+This is the step where AutoML does feature engineering and prepare the training and validating sets. Moving forward, below screenshot shows the list and results of different models tested.
+
+![image](https://user-images.githubusercontent.com/39105103/113687076-949e1f80-96e5-11eb-9e02-fa4f2ccd02d4.png)
+
+
+At last  screenshot showing training is completed:
+
+![image](https://user-images.githubusercontent.com/39105103/113687160-ada6d080-96e5-11eb-905b-5b2df1be73df.png)
+
+
+
+
+2. Lets check the properties of best model. The below screenshot detects the same
+
+![image](https://user-images.githubusercontent.com/39105103/113687364-dfb83280-96e5-11eb-94da-1619fd644b93.png)
+
+Moreover, if could able to see this in notebook as well.
+
+3.Following screenshot will help us to check the performance of different model relatively.
+
+![image](https://user-images.githubusercontent.com/39105103/113688005-81d81a80-96e6-11eb-9d05-078528ad45c6.png)
+
+1st three models got the same validation accuracy.
 
 ## Hyperparameter Tuning
 *TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+In this experiment we are going to use Azure hyperdrive. Hyperdrive is used to automate the model tuning part effectively. Here we have created another experiment for the same task but used hyperdrive instead of Automl.
 
 
 ![image](https://user-images.githubusercontent.com/39105103/113673099-2dc53a00-96d6-11eb-9500-c12720b80923.png)
 
 
+The early termination policy and Hyperparameter sampling used is as follows:
+
+![image](https://user-images.githubusercontent.com/39105103/113689263-c1533680-96e7-11eb-82a7-b73606479161.png)
+
+
+
+Parameters: Learning rate is common parameter in tuning ML models. I used n_estimators to control overfitting. As it is a tree based algorithm we should consider tree depth while tuning the model.
+
+I used Bandit policy for early stopping using a slack factor of 0.15.
+
+Randomparametersampler is used to sample my hyperparameters. As my parameters are descrete, I can use choice method to sample the parameter randomly. This method is fast well suited for descrete dataset.
+
 
 
 ### Results
 *TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
+Hyperdrive sampled 12 models having different hyperparameter combination set. All these 12 models are trained and compared. For training and data cleaning, I used script named 'train.py'. 
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+The following screenshot shows the results we got:
+
+1. Screenshot of RunDetails:
+
+![image](https://user-images.githubusercontent.com/39105103/113690323-e6947480-96e8-11eb-9f44-33f01edf14a3.png)
+
+from the above logs we can see that experiment is created and also running environment onto the cluster. After that we could see that different job IDs are sampled for tuning the hyperparameters.
+From the screenshot below, we can compare the results from different hyperparameters.
+
+![image](https://user-images.githubusercontent.com/39105103/113691566-2dcf3500-96ea-11eb-91b0-18426d88722d.png)
+
+
+![image](https://user-images.githubusercontent.com/39105103/113690986-a1247700-96e9-11eb-869b-b2a6b6761342.png)
+
+It can be seen that, the combination: Learning rate = 1.0, Tree depth  = 3 and n_estimaters = 100 got highest accuracy of 98.61%
+
+2. Screenshot of best model trained and its properties:
+
+![image](https://user-images.githubusercontent.com/39105103/113691624-43445f00-96ea-11eb-88c8-9d40bfc2dca0.png)
+
+The model ID and corresponding hyperparameters ase shown.
+
+Possible Improvements: I sampled 12 combinations, We can sample more for finer tuning. We can also try deep learning models
 
 ## Model Deployment
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
