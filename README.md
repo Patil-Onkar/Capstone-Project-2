@@ -5,9 +5,17 @@
 This is a capstone project from Azure machine learning nanodegree program udacity. In this project we aim to build and train the machine learning models using Hyperdrive and AutoML. Once we train our machine learning model we compare the run and pick the best one for deployment. 
 The second part of this project is to deploy the model as a web service and test the functionality.
 
+
+
+![image](https://user-images.githubusercontent.com/39105103/113671246-babac400-96d3-11eb-99f6-0a84f04dd35b.png)
+
+
+
+
+
 For this case I have used Tic-tac-toe game states as the training dataset for my model. After training my ML model, model can be used to predict which player has won the game just by looking at the states of game.
 
-The end goal is to understand different azure machine learning services.
+The end goal is to understand and apply different azure machine learning services.
 
 
 
@@ -44,6 +52,13 @@ You can directly download the data file from the repo https://archive.ics.uci.ed
 ## Automated ML
 *TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
 
+
+![image](https://user-images.githubusercontent.com/39105103/113673131-36b60b80-96d6-11eb-8cff-3fa558a0576c.png)
+
+
+
+
+
 ### Results
 *TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
 
@@ -53,6 +68,11 @@ You can directly download the data file from the repo https://archive.ics.uci.ed
 *TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
 
 
+![image](https://user-images.githubusercontent.com/39105103/113673099-2dc53a00-96d6-11eb-9500-c12720b80923.png)
+
+
+
+
 ### Results
 *TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
 
@@ -60,6 +80,12 @@ You can directly download the data file from the repo https://archive.ics.uci.ed
 
 ## Model Deployment
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+
+
+![image](https://user-images.githubusercontent.com/39105103/113675556-1e93bb80-96d9-11eb-92c0-b0b26098f77b.png)
+
+
+
 
 ## Screen Recording
 *TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
