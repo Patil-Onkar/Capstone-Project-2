@@ -122,7 +122,7 @@ Moreover, if could able to see this in notebook as well.
 1st three models got the same validation accuracy.
 
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+
 In this experiment we are going to use Azure hyperdrive. Hyperdrive is used to automate the model tuning part effectively. Here we have created another experiment for the same task but used hyperdrive instead of Automl.
 
 
@@ -144,7 +144,7 @@ Randomparametersampler is used to sample my hyperparameters. As my parameters ar
 
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
+
 Hyperdrive sampled 12 models having different hyperparameter combination set. All these 12 models are trained and compared. For training and data cleaning, I used script named 'train.py'. 
 
 The following screenshot shows the results we got:
@@ -172,19 +172,61 @@ The model ID and corresponding hyperparameters ase shown.
 Possible Improvements: I sampled 12 combinations, We can sample more for finer tuning. We can also try deep learning models
 
 ## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+I have deployed the model onto Azure Container Instance (ACI). Tested the endpoints from notebook itself.
+
 
 
 ![image](https://user-images.githubusercontent.com/39105103/113675556-1e93bb80-96d9-11eb-92c0-b0b26098f77b.png)
 
 
+Following are the steps taken to deploy the model.
+step 1: Register the best model. 
+
+Experiment with automl gave higher accuracy than hyperparameter tuning.Hence, we used automl model for deployment. For deploying the model, 1st we need to register it onto the model datastore so that it can be called using scoring script.\
+
+![image](https://user-images.githubusercontent.com/39105103/113694470-6e7c7d80-96ed-11eb-85ed-f197e3c558ae.png)
+
+
+step 2: Configure the ACI and the interface:
+
+![image](https://user-images.githubusercontent.com/39105103/113694670-ac79a180-96ed-11eb-8c6b-e19c35f6a8a1.png)
+
+
+step 3: Deploy it !:
+
+![image](https://user-images.githubusercontent.com/39105103/113694775-cdda8d80-96ed-11eb-94db-33955e47447e.png)
+
+
+For testing purpose we send a request from the notebook and got the response as expected. Demo below explains the working of deployed model breifly.
+
+The following screenshot shows the Active status of deployed model.
+
+![image](https://user-images.githubusercontent.com/39105103/113695208-3fb2d700-96ee-11eb-87d5-33b17cea6c5d.png)
+
+
+I have named the service as bestmodel. we can observe that deployment state is healthy. The succeeded deployment status can also be seen from below status
+
+![image](https://user-images.githubusercontent.com/39105103/113695816-eac39080-96ee-11eb-94e0-ebd309958a6f.png)
+
+To check the state of endpoint is active or not, I have printed the uri using endpoint service object:
+
+![image](https://user-images.githubusercontent.com/39105103/113696071-2e1dff00-96ef-11eb-8d06-320b62814f2d.png)
+
+
+
 
 
 ## Screen Recording
-*TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
-- A working model
-- Demo of the deployed  model
-- Demo of a sample request sent to the endpoint and its response
 
-## Standout Suggestions
-*TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
+This is the screencast link, It shows the demo of working model.
+
+Working model link:
+https://drive.google.com/file/d/1voO93FuzL8_lLC3WhAS9ssW01FgAbP0g/view?usp=sharing
+
+Video showing working demo:
+https://drive.google.com/file/d/1PT7KWnhKy0WvXrS7bqJp6-3KN7iZOGv_/view?usp=sharing
+
+
+
+**Please note that we are sending the request through service URI and not to the locally present model. This can be seen from the screencast.**
+.
