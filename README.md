@@ -113,7 +113,7 @@ At last  screenshot showing training is completed:
 
 ![image](https://user-images.githubusercontent.com/39105103/113687364-dfb83280-96e5-11eb-94da-1619fd644b93.png)
 
-Moreover, if could able to see this in notebook as well.
+for more details, we are able to see this in notebook as well.
 
 3.Following screenshot will help us to check the performance of different model relatively.
 
